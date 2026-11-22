@@ -13,7 +13,7 @@ namespace QLHSSV
             InitializeComponent();
             khoa = new Khoa();
 
-            // Nối sự kiện với hàm xử lý (viết ở đây nên không cần bấm đúp từng nút bên Design)
+            // Nối sự kiện với hàm xử lý
             Load += frmKhoa_Load;
             dgvKhoa.CellClick += dgvKhoa_CellClick;
             btnThem.Click += btnThem_Click;

@@ -13,7 +13,7 @@ namespace QLHSSV
             db = new ThaotacCSDL();
         }
 
-        // Câu SELECT dùng chung: lấy bộ môn kèm tên khoa (nối bảng KHOA)
+        
         const string cauLay =
             "SELECT b.MABOMON, b.TENBOMON, b.MAKHOA, k.TENKHOA, b.TRUONGBOMON, b.EMAILBOMON, " +
             "b.SONOIBOBOMON, b.TRANGTHONGTINBOMON, b.MOTABOMON " +
@@ -44,7 +44,7 @@ namespace QLHSSV
             return db.execute(sql, new SqlParameter("@ma", maBoMon.Trim())).Rows.Count > 0;
         }
 
-        // Bộ môn đang quản lý bao nhiêu ngành (có ngành thì không cho xóa)
+        // Bộ môn đang quản lý bao nhiêu ngành
         public int demNganh(string maBoMon)
         {
             string sql = "SELECT MANGANH FROM NGANH WHERE MABOMON = @ma";
@@ -61,7 +61,7 @@ namespace QLHSSV
                                                      soNoiBo, trangThongTin, moTa));
         }
 
-        // Sửa theo mã bộ môn (mã là khóa chính nên không cho đổi)
+        // Sửa theo mã bộ môn
         public int suaBoMon(string ma, string maKhoa, string ten, string truongBoMon, string email,
                             string soNoiBo, string trangThongTin, string moTa)
         {
@@ -94,7 +94,7 @@ namespace QLHSSV
             };
         }
 
-        // Ô để trống thì lưu NULL vào CSDL thay vì chuỗi rỗng
+        
         object rongThiNull(string giaTri)
         {
             if (string.IsNullOrWhiteSpace(giaTri)) return DBNull.Value;
