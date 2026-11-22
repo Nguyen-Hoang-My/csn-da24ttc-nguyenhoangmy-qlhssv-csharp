@@ -22,8 +22,7 @@
             mnuBoMon.Click += (s, e) => moForm<frmBoMon>();
             mnuNganh.Click += (s, e) => moForm<frmNganh>();
             mnuKhoaHoc.Click += (s, e) => moForm<frmKhoaHoc>();
-            mnuHoSoSV.Click += (s, e) =>
-                MessageBox.Show("Chức năng đang xây dựng.", "Thông báo");
+            mnuHoSoSV.Click += mnuHoSoSV_Click;
         }
 
         void frmMain_Load(object? sender, EventArgs e)
@@ -47,9 +46,11 @@
         
         void phanQuyen()
         {
+            mnuDanhMuc.Visible = vaiTro == "ADMIN";
+            mnuSinhVien.Visible = vaiTro == "GIAOVU" || vaiTro == "SINHVIEN";
             if (vaiTro == "SINHVIEN")
             {
-                mnuDanhMuc.Visible = false;
+                mnuHoSoSV.Text = "Hồ sơ của tôi";
             }
         }
 
@@ -67,6 +68,27 @@
             }
             T formMoi = new T();
             formMoi.Show(this);    
+        }
+
+       
+        void mnuHoSoSV_Click(object? sender, EventArgs e)
+        {
+            if (vaiTro != "SINHVIEN")
+            {
+                moForm<frmSinhVien>();
+                return;
+            }
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f is frmSinhVien) { f.Activate(); return; }
+            }
+            string maSV = new TaiKhoan().layMaSV(tenDangNhap);
+            if (maSV == "")
+            {
+                MessageBox.Show("Tài khoản này chưa được gắn với hồ sơ sinh viên nào.", "Thông báo");
+                return;
+            }
+            new frmSinhVien(maSV).Show(this);
         }
 
         void mnuDangXuat_Click(object? sender, EventArgs e)

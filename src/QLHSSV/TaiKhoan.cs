@@ -5,7 +5,7 @@ using Microsoft.Data.SqlClient;
 
 namespace QLHSSV
 {
-   
+    // LỚP XỬ LÝ cho bảng TAIKHOAN: đăng nhập, mã hóa mật khẩu
     class TaiKhoan
     {
         ThaotacCSDL db;
@@ -22,7 +22,7 @@ namespace QLHSSV
             return Convert.ToHexString(kq).ToLower();
         }
 
-       
+        
         public DataRow? dangNhap(string tenDangNhap, string matKhau)
         {
             string sql = "SELECT TENDANGNHAP, HOTEN, VAITRO, TRANGTHAI FROM TAIKHOAN " +
@@ -32,6 +32,15 @@ namespace QLHSSV
                 new SqlParameter("@mk", bamMatKhau(matKhau)));
             if (kq.Rows.Count == 0) return null;
             return kq.Rows[0];
+        }
+
+        
+        public string layMaSV(string tenDangNhap)
+        {
+            DataTable kq = db.execute("SELECT MASV FROM TAIKHOAN WHERE TENDANGNHAP = @ten",
+                                      new SqlParameter("@ten", tenDangNhap));
+            if (kq.Rows.Count == 0 || kq.Rows[0]["MASV"] == DBNull.Value) return "";
+            return kq.Rows[0]["MASV"].ToString() ?? "";
         }
     }
 }
