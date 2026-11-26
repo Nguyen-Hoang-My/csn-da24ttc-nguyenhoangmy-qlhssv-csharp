@@ -111,6 +111,7 @@
             btnSua = new Button();
             btnXoa = new Button();
             btnLamMoi = new Button();
+            btnInHoSo = new Button();
             lbTimKiem = new Label();
             txtTimKiem = new TextBox();
             btnTim = new Button();
@@ -883,6 +884,15 @@
             btnLamMoi.Text = "Làm mới";
             btnLamMoi.UseVisualStyleBackColor = true;
             //
+            // btnInHoSo
+            //
+            btnInHoSo.Location = new Point(404, 272);
+            btnInHoSo.Name = "btnInHoSo";
+            btnInHoSo.Size = new Size(90, 32);
+            btnInHoSo.TabIndex = 5;
+            btnInHoSo.Text = "In hồ sơ";
+            btnInHoSo.UseVisualStyleBackColor = true;
+            //
             // lbTimKiem
             //
             lbTimKiem.AutoSize = true;
@@ -966,6 +976,7 @@
             Controls.Add(btnSua);
             Controls.Add(btnXoa);
             Controls.Add(btnLamMoi);
+            Controls.Add(btnInHoSo);
             Controls.Add(lbTimKiem);
             Controls.Add(txtTimKiem);
             Controls.Add(btnTim);
@@ -1081,6 +1092,7 @@
         private Button btnSua;
         private Button btnXoa;
         private Button btnLamMoi;
+        private Button btnInHoSo;
         private Label lbTimKiem;
         private TextBox txtTimKiem;
         private Button btnTim;
@@ -1091,4 +1103,4 @@
         private Label lblTongSo;
         private DataGridView dgvSinhVien;
     }
-}
+}

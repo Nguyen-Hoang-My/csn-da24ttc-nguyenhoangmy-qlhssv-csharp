@@ -24,6 +24,7 @@ namespace QLHSSV
             btnSua.Click += btnSua_Click;
             btnXoa.Click += btnXoa_Click;
             btnLamMoi.Click += btnLamMoi_Click;
+            btnInHoSo.Click += (s, e) => frmXemIn.inHoSo(txtMaSV.Text.Trim());
             btnTim.Click += (s, e) => napLuoi();
             txtTimKiem.KeyDown += (s, e) =>
             {
@@ -95,7 +96,7 @@ namespace QLHSSV
         void cheDoChiXem()
         {
             Text = "Hồ sơ của tôi";
-            foreach (Control c in new Control[] { btnThem, btnSua, btnXoa, btnLamMoi, lbTimKiem, txtTimKiem,
+            foreach (Control c in new Control[] { btnThem, btnSua, btnXoa, btnLamMoi, btnInHoSo, lbTimKiem, txtTimKiem,
                                                   btnTim, lbLocNganh, cboLocNganh, lbLocKhoaHoc, cboLocKhoaHoc,
                                                   lblTongSo, dgvSinhVien, btnChonAnh, btnBoAnh })
                 c.Visible = false;
@@ -243,6 +244,7 @@ namespace QLHSSV
             btnThem.Enabled = true;
             btnSua.Enabled = false;
             btnXoa.Enabled = false;
+            btnInHoSo.Enabled = false;
             dgvSinhVien.ClearSelection();
             tabHoSo.SelectedIndex = 0;
             txtMaSV.Focus();
@@ -335,6 +337,7 @@ namespace QLHSSV
             btnThem.Enabled = false;
             btnSua.Enabled = true;
             btnXoa.Enabled = true;
+            btnInHoSo.Enabled = true;   // chỉ in hồ sơ đã lưu trong CSDL
         }
 
         string chuoi(DataRow dong, string cot)
